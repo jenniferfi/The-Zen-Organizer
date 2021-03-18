@@ -1,0 +1,36 @@
+
+<div class="notification"></div>
+<div class="weather-container">
+    <div class="weather-icon"><!-- <img src="/static/icons/unknown.png"> --></div>
+    <div class="temperature-value">
+        <p>- &#176;</p><span>C</span>
+    </div>
+    <div class="temperature-description"> - </div>
+    <div class="location">
+        <p>-</p>
+    </div>
+</div>
+<script>
+    const notificationEl = document.querySelector('.notification');
+const iconEl = document.querySelector('.weather-icon');
+const tempEl = document.querySelector('.temperature-value p');
+const descEl = document.querySelector('.temperature-description p');
+const locationEl = document.querySelector('.location p');
+
+const weather = {
+    temperature: {
+        value: 5,
+        unit: "celsius"
+    },
+    description: "sunny",
+    iconId: "01d",
+    city: "Espoo",
+    country: "Finland"
+}
+function displayWeather() {
+    iconEl.innerHTML = `<img src="/static/icons/${weather.iconId}.png"/>`;
+    tempEl.innerHTML = `${weather.temperature.value} &#176;<span>C</span>`;
+    descEl.innerHTML = weather.description;
+    locationEl.innerHTML = `${weather.city}, ${weather.country}`;
+}
+</script>

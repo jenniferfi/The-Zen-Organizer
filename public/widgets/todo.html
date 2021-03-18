@@ -1,0 +1,35 @@
+<!-- Todo list -->
+
+<h2>Today's Todos</h2>
+
+<!-- Form for task input -->
+<form action="/" method="POST">
+    <input autocomplete="off" name="task" placeholder="Task" type="text">
+    <input type="submit" value="Add Task">
+</form>
+
+<!-- List of tasks -->
+<div id="table">
+    <table>
+        <tbody>
+            <tr>
+                <td>Hard coded task</td>
+                <td>Edit</td>
+                <td>Del</td>
+            </tr>
+
+            <!-- Loop through list of tasks -->
+            <!--                     {% for t in tasks %}
+                    <tr>
+                        <td>{{ t.task }}</td>
+                        <td>
+                            <form action="/delete" method="post">
+                                <input name="id" type="hidden" value="{{ task.id }}">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %} -->
+        </tbody>
+    </table>
+</div>
