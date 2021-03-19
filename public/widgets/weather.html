@@ -1,36 +1,45 @@
-
-<div class="notification"></div>
+<div class="notification"><p></p></div>
 <div class="weather-container">
-    <div class="weather-icon"><!-- <img src="/static/icons/unknown.png"> --></div>
-    <div class="temperature-value">
-        <p>- &#176;</p><span>C</span>
+    <div class="weather-icon">
+        <img src="http://openweathermap.org/img/wn/03d@2x.png">
     </div>
-    <div class="temperature-description"> - </div>
-    <div class="location">
-        <p>-</p>
+    <div class="temp">
+        <p> 5 &#176;<span>C</span></p>
     </div>
+    <div class="description">Scattered clouds</div>
+    <div class="location"> Espoo, FI </div>
 </div>
 <script>
     const notificationEl = document.querySelector('.notification');
-const iconEl = document.querySelector('.weather-icon');
-const tempEl = document.querySelector('.temperature-value p');
-const descEl = document.querySelector('.temperature-description p');
-const locationEl = document.querySelector('.location p');
+    const iconEl = document.querySelector('.weather-icon');
+    const tempEl = document.querySelector('.temp p');
+    const descEl = document.querySelector('.description');
+    const locationEl = document.querySelector('.location');
 
-const weather = {
-    temperature: {
-        value: 5,
-        unit: "celsius"
-    },
-    description: "sunny",
-    iconId: "01d",
-    city: "Espoo",
-    country: "Finland"
-}
-function displayWeather() {
-    iconEl.innerHTML = `<img src="/static/icons/${weather.iconId}.png"/>`;
-    tempEl.innerHTML = `${weather.temperature.value} &#176;<span>C</span>`;
-    descEl.innerHTML = weather.description;
-    locationEl.innerHTML = `${weather.city}, ${weather.country}`;
-}
+    // Get city by geolocation or long + lat
+    let city = "Espoo";
+
+    function fetchWeather() {
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${API_KEY}&units=metric`)
+            .then(data => {
+                return data.json();
+            })
+            .then(displayWeather);
+    }
+    function displayWeather(data) {
+        let iconId = data.weather[0].icon;
+        let temperature = Math.round(data.main.temp);
+        let desc = data.weather[0].description;
+        let description = desc.charAt(0).toUpperCase() + desc.slice(1);
+        let city = data.name;
+        let country = data.sys.country;
+
+        iconEl.innerHTML = `<img src="http://openweathermap.org/img/wn/${iconId}@2x.png"/>`;
+        tempEl.innerHTML = `${temperature}&#176;<span>C</span>`;
+        descEl.innerHTML = description;
+        locationEl.innerHTML = `${city} <span>${country}</span>`;
+    }
+    $(document).ready(() => {
+        fetchWeather();
+    });
 </script>
