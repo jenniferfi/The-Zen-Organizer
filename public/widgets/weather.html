@@ -10,15 +10,17 @@
     <div class="location"> Espoo, FI </div>
 </div>
 <script>
+    // Variables
     const notificationEl = document.querySelector('.notification');
     const iconEl = document.querySelector('.weather-icon');
     const tempEl = document.querySelector('.temp p');
     const descEl = document.querySelector('.description');
     const locationEl = document.querySelector('.location');
 
-    // Get city by geolocation or long + lat
+    // TODO: Get city by geolocation or long + lat
     let city = "Espoo";
 
+    // Fetch weather from OpenWeather
     function fetchWeather() {
         fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${API_KEY}&units=metric`)
             .then(data => {
@@ -26,6 +28,7 @@
             })
             .then(displayWeather);
     }
+    // Display weather on page
     function displayWeather(data) {
         let iconId = data.weather[0].icon;
         let temperature = Math.round(data.main.temp);
