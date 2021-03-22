@@ -69,11 +69,10 @@ h2 {
 .weather {
     margin: 200px auto;
 }
-.notification p{
-    font-size: 20px;
+.notification {
+    font-size: 16px;
     margin: 0;
-    text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 .weather-icon{
     width: 300px;
@@ -165,7 +164,8 @@ input[type="submit"] {
 }
 input[type="submit"]:hover {
     color: #9E2A2B;
-    background-color: #FFF3B0;   
+    background-color: #FFF3B0;  
+    cursor: pointer; 
 }
 input[type="text"] {
     border-color: #FFF3B0;
@@ -225,9 +225,13 @@ table {
     color: #540B0E;
     border-color: #540B0E;
 }
-.pom:hover{
+.pom:hover {
     color: #FFF3B0;
     background-color: #540B0E;
+    cursor: pointer;
+}
+.far:hover {
+    cursor: pointer;
 }
 #msg {
     margin-top: 0;
