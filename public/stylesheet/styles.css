@@ -174,13 +174,37 @@ input[type="text"] {
 ::placeholder {
     color: #540B0E;
 }
-#table {
-    overflow: auto;
-}
-table {
-    margin: 18px 10px 0 10px;
-    width: 95%;
+/* todo-items */
+.todo-items {
+    min-width: 350px;
+} 
+  
+ul {
+    max-width: 500px;
     text-align: left;
+    list-style: none;
+    font-size: 18px;
+    margin: 0 auto;
+    padding: 0;
+}
+ul:first-child {
+    margin-top: 40px;
+}
+li {
+    height: 35px;
+}
+li i {
+    float: right;
+    clear: both;
+}
+input[type="checkbox"] {
+    margin-right: 10px;
+    background-color: #FFF3B0;
+    border: none;
+  }
+  
+.checked { 
+    text-decoration: line-through;
 }
 
 /* Beige pomodoro box */
@@ -230,7 +254,7 @@ table {
     background-color: #540B0E;
     cursor: pointer;
 }
-.far:hover {
+.far:hover, .fas:hover {
     cursor: pointer;
 }
 #msg {

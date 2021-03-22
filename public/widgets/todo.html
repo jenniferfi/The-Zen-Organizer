@@ -3,36 +3,117 @@
 <h2>Today's Todos</h2>
 
 <!-- Form for task input -->
-<form action="/" method="POST">
-    <input autocomplete="off" name="task" placeholder="Task" type="text">
-    <input type="submit" value="Add Task">
-</form>
+<div class="todo-container">
+    <form class="todo-form">
+        <input type="text" id="task" class="todo-input" autocomplete="off" name="task" placeholder="Task">
+        <input type="submit" class="add-button" value="Add Task">
+    </form>
 
-<!-- List of tasks -->
-<div id="table">
-    <table>
-        <tbody>
-            <!-- Loop through list of tasks, maybe using vue? -->
-            <tr>
-                <td>Weather geolocation</td>
-                <td><i class="fas fa-pencil-alt"></i></td>
-                <td><i class="far fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>TODO-list</td>
-                <td><i class="fas fa-pencil-alt"></i></td>
-                <td><i class="far fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>Check styles</td>
-                <td><i class="fas fa-pencil-alt"></i></td>
-                <td><i class="far fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>Extra: weather icons, progress bar on pomodoro</td>
-                <td><i class="fas fa-pencil-alt"></i></td>
-                <td><i class="far fa-trash-alt"></i></td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- List of tasks -->
+    <div>
+        <ul id="list" class="todo-items"></ul>
+    </div>
 </div>
+
+<script>
+    // Variables
+    const todoForm = document.querySelector('.todo-form');
+    const todoInput = document.querySelector('.todo-input');
+    const list = document.querySelector('.todo-items');
+
+    let todos = [];
+
+    // Add eventlistener to submit button
+    todoForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        addTodo(todoInput.value);
+    });
+
+    function addTodo(item) {
+        // If input is not '', create todo
+        if (item !== '') {
+            const todo = {
+                id: Date.now(),
+                name: item,
+                completed: false
+            };
+
+            // Add todo to todos array and update to local storage
+            todos.push(todo);
+            addToLocalStorage(todos);
+
+            // Clear input
+            todoInput.value = '';
+        }
+    }
+
+    function renderTodos(todos) {
+        // Clear list
+        list.innerHTML = '';
+
+        todos.forEach(function (item) {
+            // Check if task is completed
+            const checked = item.completed ? 'checked' : null;
+
+            // Create <li> element
+            const li = document.createElement('li');
+            li.setAttribute('class', 'item');
+            li.setAttribute('data-key', item.id);
+            if (item.completed === true) {
+                li.classList.add('checked');
+            }
+            li.innerHTML = `
+            <input type="checkbox" class="checkbox" ${checked}>
+            ${item.name}
+            <i class="far fa-trash-alt delete-button"></i>
+            `;
+
+            // Add <li> element to <ul>
+            list.append(li);
+        });
+    }
+
+    function addToLocalStorage(todos) {
+        localStorage.setItem('todos', JSON.stringify(todos));
+        renderTodos(todos);
+    }
+
+    function getFromLocalStorage() {
+        const ref = localStorage.getItem('todos');
+        if (ref) {
+            todos = JSON.parse(ref);
+            renderTodos(todos);
+        }
+    }
+
+    function toggle(id) {
+        todos.forEach(function (item) {
+            if (item.id == id) {
+                item.completed = !item.completed;
+            }
+        });
+        addToLocalStorage(todos);
+    }
+
+    function deleteTodo(id) {
+        // Filter out <li> with id
+        todos = todos.filter(function (item) {
+            return item.id != id;
+        });
+
+        // Update local storage
+        addToLocalStorage(todos);
+    }
+
+    // Add event listener to checkbox and delete button
+    list.addEventListener('click', function (event) {
+        if (event.target.type === 'checkbox') {
+            toggle(event.target.parentElement.getAttribute('data-key'));
+        }
+        if (event.target.classList.contains('delete-button')) {
+            deleteTodo(event.target.parentElement.getAttribute('data-key'));
+        }
+    })
+
+    getFromLocalStorage();
+</script>
