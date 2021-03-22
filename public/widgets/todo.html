@@ -73,11 +73,13 @@
         });
     }
 
+    // Add todo list to local storage and update list on page
     function addToLocalStorage(todos) {
         localStorage.setItem('todos', JSON.stringify(todos));
         renderTodos(todos);
     }
 
+    // Get todo list from local storage and update list on page
     function getFromLocalStorage() {
         const ref = localStorage.getItem('todos');
         if (ref) {
@@ -87,11 +89,14 @@
     }
 
     function toggle(id) {
+        // Change status of completed
         todos.forEach(function (item) {
             if (item.id == id) {
                 item.completed = !item.completed;
             }
         });
+
+        // Update local storage
         addToLocalStorage(todos);
     }
 
