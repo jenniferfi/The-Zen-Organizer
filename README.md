@@ -6,7 +6,7 @@ It is a single page web application containing widgets that will help you organi
 Widgets:
  - current date
  - current weather based on your location (geolocation)
- - to-do list that saves your task in local storage
+ - to-do list, that saves your tasks in local storage
  - pomodoro timer with different time options
 
 
