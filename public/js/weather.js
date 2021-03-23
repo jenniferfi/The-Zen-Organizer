@@ -11,7 +11,7 @@ function fetchWeather() {
     // Use geolocation to locate user
     navigator.geolocation.getCurrentPosition(success, error);
 
-    // User users location
+    // Use users location
     function success(position) {
         lat = position.coords.latitude;
         lon = position.coords.longitude;

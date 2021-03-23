@@ -101,6 +101,8 @@ list.addEventListener('click', function (event) {
         deleteTodo(event.target.parentElement.getAttribute('data-key'));
     }
 })
+
+// Get to-do list from local storage when page is ready
 $(document).ready(() => {
     getFromLocalStorage();
 });
