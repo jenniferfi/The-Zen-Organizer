@@ -158,6 +158,9 @@ input, .button {
     font-weight: 800;
     font-family: 'Courier New', Courier, monospace;
 }
+input:focus, .button:focus {
+    outline: none;
+}
 input[type="submit"] {    
     background-color: #9E2A2B;
     color: #FFF3B0;
@@ -173,7 +176,7 @@ input[type="text"] {
     color: #540B0E;
 }
 ::placeholder {
-    color: #540B0E;
+    color: #9E2A2B;
 }
 .todo-items {
     min-width: 350px;
@@ -196,14 +199,19 @@ li i {
     float: right;
     clear: both;
 }
-input[type="checkbox"] {
-    padding: 8px;
-  }
-  
 .checked { 
     text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
 }
-
+.in-progress:hover {
+    cursor: pointer;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+}
+.checked:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
 /* Beige pomodoro box */
 #box4 {
     grid-column-start: 3;

@@ -53,18 +53,18 @@
 
         todos.forEach(function (item) {
             // Check if task is completed
-            const checked = item.completed ? 'checked' : null;
+            const checked = item.completed ? 'checked' : 'in-progress';
 
             // Create <li> element
             const li = document.createElement('li');
             li.setAttribute('class', 'item');
             li.setAttribute('data-key', item.id);
-            if (item.completed === true) {
+/*             if (item.completed === true) {
                 li.classList.add('checked');
-            }
-            li.innerHTML = `
-            <input type="checkbox" class="checkbox" ${checked}>
-            ${item.name}
+            } */
+            
+            li.innerHTML = `            
+            <span class="todo ${checked}">${item.name}</span>
             <i class="far fa-trash-alt delete-button"></i>
             `;
 
@@ -110,9 +110,9 @@
         addToLocalStorage(todos);
     }
 
-    // Add event listener to checkbox and delete button
+    // Add event listener to list item and delete button
     list.addEventListener('click', function (event) {
-        if (event.target.type === 'checkbox') {
+        if (event.target.classList.contains('todo')) {
             toggle(event.target.parentElement.getAttribute('data-key'));
         }
         if (event.target.classList.contains('delete-button')) {
