@@ -83,7 +83,8 @@ h2 {
     width: 120px;
     height: 120px;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto;    
+    filter: invert(98%) sepia(84%) saturate(573%) hue-rotate(328deg) brightness(97%) contrast(109%);
 }
 .temp{
     width: 300px;
@@ -174,11 +175,9 @@ input[type="text"] {
 ::placeholder {
     color: #540B0E;
 }
-/* todo-items */
 .todo-items {
     min-width: 350px;
-} 
-  
+}  
 ul {
     max-width: 500px;
     text-align: left;
@@ -198,9 +197,7 @@ li i {
     clear: both;
 }
 input[type="checkbox"] {
-    margin-right: 10px;
-    background-color: #FFF3B0;
-    border: none;
+    padding: 8px;
   }
   
 .checked { 
@@ -254,8 +251,9 @@ input[type="checkbox"] {
     background-color: #540B0E;
     cursor: pointer;
 }
-.far:hover, .fas:hover {
+.far:hover {
     cursor: pointer;
+    transform: scale(1.2);
 }
 #msg {
     margin-top: 0;
