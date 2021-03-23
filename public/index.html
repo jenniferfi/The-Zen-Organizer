@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/f6a379d2f3.js" crossorigin="anonymous"></script>
-    <script src="../app.js" type="text/javascript"></script>    
-    <script src="../config.js" type="text/javascript"></script>
-    <script src="js/weathericons.js" type="text/javascript"></script>
     <link href="/public/stylesheet/styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
@@ -21,26 +19,75 @@
     <div id="container">
         <!-- Sidebar box-->
         <div id="box1">
-            <div id="calendar" class="calendar"></div>
-            <div id="weather" class="weather"></div>
+            <!-- Calendar -->
+            <div id="calendar" class="calendar">
+                <p id="month"></p>
+                <p id="weekday"></p>
+                <p id="day"></p>
+                <p id="year"></p>
+            </div>
+            <!-- Weather -->
+            <div id="weather" class="weather">
+                <div class="notification"></div>
+                <div class="weather-container">
+                    <div class="weather-icon"></div>
+                    <div class="temp">
+                        <p></p>
+                    </div>
+                    <div class="description"></div>
+                    <div class="location"></div>
+                </div>
+            </div>
         </div>
         <!-- Header box -->
         <div id="box2">
             <div class="box2-content" id="page-info">
                 <h1 id="title">The Zen <br> Organizer</h1>
                 <p>
-                    Working remotely from home can be difficult at times. 
-                    This tool helps you organize your work, one day at a time, focusing on keeping regular breaks. 
+                    Working remotely from home can be difficult at times.
+                    This tool helps you organize your work, one day at a time, focusing on keeping regular breaks.
                     Try to keep your daily to-do list to a maximum of five to eight tasks. <br>
                     Good luck, have fun!
                 </p>
             </div>
         </div>
         <!-- Todo box -->
-        <div id="box3"></div>
+        <div id="box3">
+            <h2>Today's Todos</h2>
+            <div class="todo-container">
+                <form class="todo-form">
+                    <input type="text" id="task" class="todo-input" autocomplete="off" name="task" placeholder="Task">
+                    <input type="submit" class="add-button" value="Add Task">
+                </form>
+                <div id="list-container">
+                    <ul id="list" class="todo-items"></ul>
+                </div>
+            </div>
+        </div>
         <!-- Pomodoro box -->
-        <div id="box4"></div>
+        <div id="box4">
+            <h2>Pomodoro timer</h2>
+            <div class="container button-container">
+                <button class="button pom" onclick="start(25, 0)">Start Working</button>
+                <button class="button pom" onclick="start(5, 0)">Short Break</button>
+                <button class="button pom" onclick="start(15, 0)">Long Break</button>
+            </div>
+            <div class="container timer">
+                <div class="row" id="timerRow">
+                    <h4 id="min"></h4>
+                    <h4>:</h4>
+                    <h4 id="sec"></h4>
+                </div>
+            </div>
+            <div id="pause" class="pause" value="resume"><i onclick="pause()" class="far fa-play-circle"></i></div>
+        </div>
     </div>
+    <script src="js/config.js" type="text/javascript"></script>
+    <script src="js/weathericons.js" type="text/javascript"></script>
+    <script src="js/date.js" type="text/javascript"></script>
+    <script src="js/weather.js" type="text/javascript"></script>
+    <script src="js/todo.js" type="text/javascript"></script>
+    <script src="js/pomodoro.js" type="text/javascript"></script>
 </body>
 
 </html>

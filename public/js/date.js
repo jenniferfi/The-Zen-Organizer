@@ -1,9 +1,4 @@
-<!-- Calendar widget -->
-<p id="month"></p>
-<p id="weekday"></p>
-<p id="day"></p>
-<p id="year"></p>
-<script>
+function date(){
     const lang = navigator.language;
     let d = new Date();
 
@@ -16,4 +11,8 @@
     $('#weekday').html(weekd);
     $('#day').html(day);
     $('#year').html(year);
-</script>
+}
+
+$(document).ready(()=>{
+    date();
+})
