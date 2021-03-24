@@ -10,6 +10,6 @@ Widgets:
  - pomodoro timer with different time options
 
 
- Api key for openweathermap.org saved in config.js file as const API_KEY = "your key here"
+ Api key for openweathermap.org saved in js/config.js file as const API_KEY = "your key here"
 
  Weather icons by https://erikflowers.github.io/weather-icons/
